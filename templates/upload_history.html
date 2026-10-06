@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Upload History | DataInsight AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',filename='css/navbar.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',filename='css/upload_history.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',filename='css/footer.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+    <link rel="stylesheet"
+href="{{ url_for('static', filename='css/footer.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+</head>
+
+<body>
+
+
+{% include 'components/navbar.html' %}
+
+
+<main class="history-container">
+
+<section class="page-title">
+
+<h1>
+
+<i class="fa-solid fa-folder-open"></i>
+
+Upload History
+
+</h1>
+
+<p>
+
+View all datasets uploaded to DataInsight AI.
+
+</p>
+
+</section>
+
+
+
+<section class="history-card">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>#</th>
+
+<th>Dataset</th>
+
+<th>Rows</th>
+
+<th>Columns</th>
+
+<th>Uploaded On</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% if datasets %}
+
+{% for dataset in datasets %}
+
+<tr>
+
+<td>{{ loop.index }}</td>
+
+<td>{{ dataset.original_name }}</td>
+
+<td>{{ dataset.rows }}</td>
+
+<td>{{ dataset.columns }}</td>
+
+<td>{{ dataset.uploaded_at.strftime("%d %b %Y %I:%M %p") }}</td>
+
+</tr>
+
+{% endfor %}
+
+{% else %}
+
+<tr>
+
+<td colspan="5">
+
+No datasets uploaded yet.
+
+</td>
+
+</tr>
+
+{% endif %}
+
+</tbody>
+
+</table>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+
+</main>
+
+
+<!-- ================= PROFILE DROPDOWN ================= 
+
+<script>
+
+const profileBtn = document.querySelector(".profile-btn");
+
+const dropdown = document.querySelector(".dropdown");
+
+profileBtn.addEventListener("click", function(e){
+
+    e.stopPropagation();
+
+    dropdown.classList.toggle("show");
+
+});
+
+document.addEventListener("click", function(){
+
+    dropdown.classList.remove("show");
+
+});
+
+</script> -->
+
+<script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+{% include 'components/footer.html' %}
+</body>
+
+</html>

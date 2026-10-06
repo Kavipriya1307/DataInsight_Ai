@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | DataInsight AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+
+    <!-- Orbitron -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+     <link rel="stylesheet"
+href="{{ url_for('static', filename='css/footer.css') }}"> 
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+<link rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='images/logo.png') }}">
+   
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+{% include 'components/navbar.html' %}
+
+<!-- ================= MAIN ================= -->
+
+<main class="dashboard-container">
+
+    <!-- Hero -->
+
+    <section class="hero-card">
+
+        <div class="hero-left">
+
+            <h1>
+
+                Welcome,
+                <span>{{ user_name }}</span>
+
+            </h1>
+
+            <p>
+
+                Welcome back to <strong>DataInsight AI</strong>.
+
+                Upload datasets, clean data, visualize trends,
+                train ML models, generate AI insights,
+                and download professional reports.
+
+            </p>
+
+        </div>
+
+        <div class="hero-actions">
+    <a href="/upload" class="upload-btn">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        Upload Dataset
+    </a>
+</div>
+
+    </section>
+
+    <!-- ================= STATISTICS ================= -->
+
+<section class="stats-section">
+
+    <div class="stat-card">
+
+        <div class="stat-icon blue">
+            <i class="fa-solid fa-database"></i>
+        </div>
+
+        <div class="stat-content">
+
+            <h2>{{ dataset_count }}</h2>
+
+            <p>Datasets Uploaded</p>
+
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon green">
+            <i class="fa-solid fa-file-pdf"></i>
+        </div>
+
+        <div class="stat-content">
+
+            <h2>{{ report_count }}</h2>
+
+            <p>Reports Generated</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= DASHBOARD GRID ================= -->
+
+<section class="dashboard-grid">
+
+
+    <!-- Recent Uploads -->
+
+    <div class="dashboard-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-folder-open"></i>
+
+                Recent Datasets
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            {% if datasets %}
+
+                {% for dataset in datasets %}
+
+                <div class="recent-item">
+
+                    <div class="recent-icon">
+
+                        <i class="fa-solid fa-file-csv"></i>
+
+                    </div>
+
+                    <div class="recent-details">
+
+                        <h4>
+
+                            {{ dataset.original_name }}
+
+                        </h4>
+
+                        <p>
+
+                            {{ dataset.rows }} Rows •
+                            {{ dataset.columns }} Columns
+
+                        </p>
+
+                        <span>
+
+                            {{ dataset.uploaded_at.strftime("%d %b %Y") }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty-card">
+
+                    <i class="fa-solid fa-folder-open"></i>
+
+                    <p>No datasets uploaded yet.</p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Recent Reports -->
+
+    <div class="dashboard-card">
+
+        <div class="card-header">
+
+            <h3>
+
+                <i class="fa-solid fa-file-pdf"></i>
+
+                Recent Reports
+
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            {% if reports %}
+
+                {% for report in reports %}
+
+                <div class="recent-item">
+
+                    <div class="recent-icon pdf">
+
+                        <i class="fa-solid fa-file-pdf"></i>
+
+                    </div>
+
+                    <div class="recent-details">
+
+                        <h4>
+
+                            {{ report.report_name }}
+
+                        </h4>
+
+                        <p>
+
+                            {{ report.problem_type }}
+
+                            {% if report.model %}
+                                • {{ report.model }}
+                            {% endif %}
+
+                        </p>
+
+                        <span>
+
+                            {{ report.created_at.strftime("%d %b %Y") }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty-card">
+
+                    <i class="fa-solid fa-file-circle-xmark"></i>
+
+                    <p>
+
+                        No reports generated yet.
+
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+</main>
+
+
+<!-- ================= PROFILE DROPDOWN ================= -->
+
+<!-- <script>
+
+const profileBtn = document.querySelector(".profile-btn");
+const dropdown = document.querySelector(".dropdown");
+
+profileBtn.addEventListener("click", function(e){
+
+    e.stopPropagation();
+
+    dropdown.classList.toggle("show");
+
+});
+
+document.addEventListener("click", function(){
+
+    dropdown.classList.remove("show");
+
+});
+
+</script> -->
+<script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+{% include 'components/footer.html' %}
+</body>
+</html>

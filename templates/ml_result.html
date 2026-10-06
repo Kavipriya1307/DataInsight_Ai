@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Machine Learning Result | DataInsight AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ml_result.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+href="{{ url_for('static', filename='css/footer.css') }}">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <div class="logo">
+
+        DataInsight AI
+
+    </div>
+
+    <div class="nav-links">
+
+        <a href="/dashboard">Dashboard</a>
+
+        <a href="/upload">Upload</a>
+
+        <a href="/cleaning">Cleaning</a>
+
+        <a href="/eda">EDA</a>
+
+        <a href="/visualization">Visualization</a>
+
+        <a href="/ml" class="active">Machine Learning</a>
+
+    </div>
+
+<div class="profile">
+
+    <div class="avatar">
+        {{ user_name[0]|upper }}
+    </div>
+
+    <div class="profile-info">
+
+        <span class="username">{{ user_name }}</span>
+
+        <span class="dropdown-icon">▼</span>
+
+    </div>
+
+    <div class="dropdown-menu">
+
+        <a href="#">My Profile</a>
+
+        <a href="#">Upload History</a>
+
+        <a href="#">Reports</a>
+
+        <div class="dropdown-divider"></div>
+
+        <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+
+    </div>
+
+</div>
+    </div>
+
+</nav>
+
+<!-- ================= PAGE ================= -->
+
+<section class="upload-section">
+
+<div class="upload-card">
+
+<h1>
+
+Model Training Result
+
+</h1>
+
+<p>
+
+Your machine learning model has been trained successfully.
+
+</p>
+
+<!-- ================= TRAINING SUMMARY ================= -->
+
+<div class="summary-card">
+
+<h2>
+
+Training Summary
+
+</h2>
+
+<div class="summary-grid">
+
+<div class="summary-box">
+
+<h4>
+
+Problem Type
+
+</h4>
+
+<p>
+
+{{ result.problem }}
+
+</p>
+
+</div>
+
+<div class="summary-box">
+
+<h4>
+
+Target Column
+
+</h4>
+
+<p>
+
+{{ target }}
+
+</p>
+
+</div>
+
+<div class="summary-box">
+
+<h4>
+
+Selected Model
+
+</h4>
+
+<p>
+
+{{ model }}
+
+</p>
+
+</div>
+
+<div class="summary-box">
+
+<h4>
+
+Training Samples
+
+</h4>
+
+<p>
+
+{{ result.train_samples }}
+
+</p>
+
+</div>
+
+<div class="summary-box">
+
+<h4>
+
+Testing Samples
+
+</h4>
+
+<p>
+
+{{ result.test_samples }}
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= METRICS ================= -->
+
+{% if result.problem=="Classification" %}
+
+<div class="metric-card">
+
+    <h2>
+
+        Classification Metrics
+
+    </h2>
+
+    <div class="metric-grid">
+
+        <div class="metric-box">
+
+            <h4>Accuracy</h4>
+
+            <p>{{ result.accuracy }}%</p>
+
+        </div>
+
+        <div class="metric-box">
+
+            <h4>Precision</h4>
+
+            <p>{{ result.precision }}%</p>
+
+        </div>
+
+        <div class="metric-box">
+
+            <h4>Recall</h4>
+
+            <p>{{ result.recall }}%</p>
+
+        </div>
+
+        <div class="metric-box">
+
+            <h4>F1 Score</h4>
+
+            <p>{{ result.f1 }}%</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% else %}
+
+<div class="metric-card">
+
+    <h2>
+
+        Regression Metrics
+
+    </h2>
+
+    <div class="metric-grid">
+
+        <div class="metric-box">
+
+            <h4>R² Score</h4>
+
+            <p>{{ result.r2 }}</p>
+
+        </div>
+
+        <div class="metric-box">
+
+            <h4>MAE</h4>
+
+            <p>{{ result.mae }}</p>
+
+        </div>
+
+        <div class="metric-box">
+
+            <h4>RMSE</h4>
+
+            <p>{{ result.rmse }}</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+<!-- ================= FEATURE IMPORTANCE ================= -->
+
+{% if result.feature_importance %}
+
+<div class="feature-card">
+
+    <h2>
+
+        Feature Importance
+
+    </h2>
+
+    <table class="feature-table">
+
+        <tr>
+
+            <th>Feature</th>
+
+            <th>Importance</th>
+
+        </tr>
+
+        {% for feature,value in result.feature_importance.items() %}
+
+        <tr>
+
+            <td>{{ feature }}</td>
+
+            <td>{{ "%.4f"|format(value) }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+{% endif %}
+
+<!-- ================= MODEL PERFORMANCE ================= -->
+
+<div class="graph-card">
+
+    <h2>
+
+        Model Performance
+
+    </h2>
+
+    <img src="/{{ result.chart }}" alt="Performance Chart">
+
+</div>
+
+<!-- ================= AI EXPLANATION ================= -->
+
+<div class="ai-card">
+
+    <h2>
+
+        AI Model Explanation
+
+    </h2>
+
+    <div class="ai-box">
+
+        {{ ai_message }}
+
+    </div>
+
+</div>
+
+<!-- ================= DOWNLOAD MODEL ================= -->
+
+<div class="download-card">
+
+    <h2>
+
+        Download Trained Model
+
+    </h2>
+
+    <p>
+
+        Save your trained machine learning model for future use.
+
+    </p>
+
+    <a href="/download_model" class="download-btn">
+
+        ⬇ Download Model
+
+    </a>
+
+</div>
+
+<!-- ================= ACTION BUTTONS ================= -->
+
+<div class="button-group">
+
+    <a href="{{ url_for('prediction',target=target,model=model) }}"
+
+       class="predict-btn">
+
+       Predict Future Values
+
+    </a>
+
+    <a href="/ml"
+
+       class="secondary-btn">
+
+       Train Another Model
+
+    </a>
+
+   <a href="{{ url_for('ai_story') }}" class="continue-btn">
+    Continue to AI Story →
+</a>
+
+</div>
+
+{% include 'components/footer.html' %}
+</body>
+</html>

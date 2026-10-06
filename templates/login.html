@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | DataInsight AI</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="login-box">
+
+            <h1>Welcome</h1>
+
+            <p class="subtitle">
+                Login to continue your AI-powered data analysis journey.
+            </p>
+
+            <form action="/login" method="POST">
+
+                <div class="input-box">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+                <div class="input-box">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required>
+
+                </div>
+
+                <!-- Error Message -->
+                {% if message %}
+                <p class="error">
+                    {{ message }}
+                </p>
+                {% endif %}
+
+                <!-- Forgot Password -->
+                <div class="forgot-password">
+
+                    <a href="/forgot_password">
+
+                        Forgot Password?
+
+                    </a>
+
+                </div>
+
+                <button type="submit" class="login-btn">
+
+                    Login
+
+                </button>
+
+            </form>
+
+            <div class="bottom-links">
+
+                <p>
+
+                    Don't have an account?
+
+                    <a href="/register">
+
+                        Create Account
+
+                    </a>
+
+                </p>
+
+                <a href="/" class="back">
+
+                    ← Back to Home
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

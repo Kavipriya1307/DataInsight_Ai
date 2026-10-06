@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Machine Learning | DataInsight AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ml.css') }}">
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/footer.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+
+DataInsight AI
+
+</div>
+
+<ul class="nav-links">
+
+<li><a href="/dashboard">Dashboard</a></li>
+
+<li><a href="/upload">Upload</a></li>
+
+<li><a href="/cleaning">Cleaning</a></li>
+
+<li><a href="/eda">EDA</a></li>
+
+<li><a href="/visualization">Visualization</a></li>
+
+<li><a class="active" href="/ml">Machine Learning</a></li>
+
+</ul>
+
+<div class="profile-menu">
+
+<button class="profile-btn">
+
+<div class="avatar">
+
+{{ user_name[0]|upper }}
+
+</div>
+
+<div class="profile-text">
+
+<span>{{ user_name }}</span>
+
+▼
+
+</div>
+
+</button>
+
+<div class="dropdown">
+
+<a href="#">My Profile</a>
+
+<a href="#">Upload History</a>
+
+<a href="#">Reports</a>
+
+<hr>
+
+<a class="logout" href="/logout">Logout</a>
+
+</div>
+
+</div>
+
+</nav>
+
+<div class="container">
+
+<h1>Machine Learning</h1>
+
+<p class="subtitle">
+
+Train intelligent machine learning models from your cleaned dataset.
+
+</p>
+
+<div class="card">
+
+<h2>Dataset Ready</h2>
+
+<div class="summary-grid">
+
+<div>
+
+<h4>Rows</h4>
+
+<p>{{ summary.rows }}</p>
+
+</div>
+
+<div>
+
+<h4>Columns</h4>
+
+<p>{{ summary.columns }}</p>
+
+</div>
+
+<div>
+
+<h4>Numeric Columns</h4>
+
+<p>{{ summary.numeric }}</p>
+
+</div>
+
+<div>
+
+<h4>Categorical Columns</h4>
+
+<p>{{ summary.categorical }}</p>
+
+</div>
+
+<div>
+
+<h4>Missing Values</h4>
+
+<p>{{ summary.missing }}</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Select Target Column</h2>
+
+<form method="POST">
+
+<div class="form-group">
+
+<label>Target Column</label>
+
+<select name="target" required>
+
+<option value="">Select Target Column</option>
+
+{% for column in columns %}
+
+<option value="{{ column }}"
+
+{% if selected_target==column %}
+
+selected
+
+{% endif %}
+
+>
+
+{{ column }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<button class="train-btn">
+
+Analyze Dataset
+
+</button>
+
+</form>
+
+</div>
+
+{% if problem %}
+
+<div class="card">
+
+<h2>AI Analysis</h2>
+
+<div class="analysis-grid">
+
+<div class="analysis-box">
+
+<h3>Problem Type</h3>
+
+<p>{{ problem }}</p>
+
+</div>
+
+<div class="analysis-box">
+
+<h3>Recommended Models</h3>
+
+<ul>
+
+{% for model in models %}
+
+<li>{{ model }}</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Train Machine Learning Model</h2>
+
+<form action="/train_model" method="POST">
+
+<input type="hidden" name="target" value="{{ selected_target }}">
+
+<div class="form-group">
+
+<label>Select Model</label>
+
+<select name="model" required>
+
+{% for model in models %}
+
+<option value="{{ model }}">
+
+{{ model }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<button type="submit" class="train-btn">
+
+Train Model
+
+</button>
+
+</form>
+
+</div>
+
+{% endif %}
+
+<div class="card">
+
+<h2>AI Recommendation</h2>
+
+<div class="recommendation">
+
+<p><strong>Intelligent Recommendation</strong></p>
+
+<p>
+
+DataInsight AI automatically determines whether your selected target column is suitable for a Classification or Regression problem and recommends the most appropriate machine learning algorithms.
+
+</p>
+
+<p>
+
+For the best results, choose the model recommended by the system. You can also experiment with different algorithms to compare their performance.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<a href="/ai_story" class="next-btn">
+
+Continue to AI Storytelling →
+
+</a>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static',filename='js/ml.js') }}"></script>
+{% include 'components/footer.html' %}
+</body>
+
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Visualization | DataInsight AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static',filename='css/visualization.css') }}">
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/footer.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+DataInsight AI
+</div>
+
+<ul class="nav-links">
+<li><a href="/dashboard">Dashboard</a></li>
+<li><a href="/upload">Upload</a></li>
+<li><a href="/cleaning">Cleaning</a></li>
+<li><a href="/eda">EDA</a></li>
+<li><a class="active" href="/visualization">Visualization</a></li>
+</ul>
+
+<div class="profile-menu">
+
+<button class="profile-btn">
+
+<div class="avatar">
+{{ user_name[0]|upper }}
+</div>
+
+<div class="profile-text">
+<span>{{ user_name }}</span>
+▼
+</div>
+
+</button>
+
+<div class="dropdown">
+<a href="/profile">My Profile</a>
+<a href="/upload_history">Upload History</a>
+<a href="/reports">Reports</a>
+<hr>
+<a class="logout" href="/logout">Logout</a>
+</div>
+
+</div>
+
+</nav>
+
+<div class="container">
+
+<h1>Data Visualization</h1>
+
+<p class="subtitle">
+Create interactive charts from your dataset.
+</p>
+
+<div class="card">
+
+<h2>Create Visualization</h2>
+
+<form method="POST">
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Chart Type</label>
+
+<select name="chart" required>
+
+<option value="">Select Chart</option>
+
+<option>Bar Chart</option>
+
+<option>Line Chart</option>
+
+<option>Scatter Plot</option>
+
+<option>Histogram</option>
+
+<option>Pie Chart</option>
+
+<option>Box Plot</option>
+
+<option>Area Chart</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>X-Axis</label>
+
+<select name="x_column" required>
+
+<option value="">Select Column</option>
+
+{% for col in all_columns %}
+
+<option value="{{ col }}">{{ col }}</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Y-Axis</label>
+
+<select name="y_column">
+
+<option value="">Not Required</option>
+
+{% for col in numeric %}
+
+<option value="{{ col }}">{{ col }}</option>
+
+{% endfor %}
+
+</select>
+
+</div>
+
+</div>
+
+<button class="generate-btn" type="submit">
+
+Generate Visualization
+
+</button>
+
+</form>
+
+</div>
+
+{% if chart %}
+
+<div class="card">
+
+<h2>Generated Visualization</h2>
+
+<div class="chart-container">
+
+{{ chart|safe }}
+
+</div>
+
+</div>
+
+{% endif %}
+
+<div class="card">
+
+<h2>AI Recommendation</h2>
+
+<div class="ai-tip">
+
+<p><strong>Tip:</strong> Choose the most suitable chart based on your data type.</p>
+
+<ul>
+
+<li><strong>Bar Chart</strong> → Compare categories.</li>
+
+<li><strong>Line Chart</strong> → Show trends over time.</li>
+
+<li><strong>Scatter Plot</strong> → Find relationships between two numeric columns.</li>
+
+<li><strong>Histogram</strong> → Understand data distribution.</li>
+
+<li><strong>Pie Chart</strong> → Show proportions of categories.</li>
+
+<li><strong>Box Plot</strong> → Detect outliers.</li>
+
+<li><strong>Area Chart</strong> → Display cumulative trends.</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<a href="/ml" class="next-btn">
+
+Continue to Machine Learning →
+
+</a>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static',filename='js/visualization.js') }}"></script>
+{% include 'components/footer.html' %}
+</body>
+
+</html>

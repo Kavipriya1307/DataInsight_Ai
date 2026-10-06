@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Future Prediction | DataInsight AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/prediction.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/footer.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav>
+
+        <div class="logo">
+
+            DataInsight AI
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/dashboard">Dashboard</a>
+
+            <a href="/upload">Upload</a>
+
+            <a href="/cleaning">Cleaning</a>
+
+            <a href="/eda">EDA</a>
+
+            <a href="/visualization">Visualization</a>
+
+            <a href="/ml" class="active">Machine Learning</a>
+
+        </div>
+
+        <div class="profile">
+
+            <div class="avatar">
+
+                {{ user_name[0] }}
+
+            </div>
+
+            <div class="profile-info">
+
+                <div class="username">
+
+                    {{ user_name }}
+
+                </div>
+
+                <div class="dropdown">
+
+                    ▼
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+   <div class="button-row">
+
+<a href="/ml_result" class="back-btn">
+
+← Back to ML Result
+
+</a>
+
+</div>
+
+    <!-- ================= PAGE ================= -->
+
+    <section class="upload-section">
+
+        <div class="upload-card">
+
+            <h1>
+
+                Future Prediction
+
+            </h1>
+
+            <p>
+
+                Enter new values below to predict the <strong>{{ target }}</strong> using the trained <strong>{{ model }}</strong> model.
+
+            </p>
+
+            <form method="POST">
+
+                        <div class="prediction-grid">
+
+                {% for field in fields %}
+
+                <div class="input-group">
+
+                    <label>
+
+                        {{ field }}
+
+                    </label>
+
+                    <input
+                        type="text"
+                        name="{{ field }}"
+                        placeholder="Enter {{ field }}"
+                        required
+                    >
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+            <button type="submit" class="predict-btn">
+
+                Predict Future Value
+
+            </button>
+
+        </form>
+
+        {% if prediction is not none %}
+
+        <div class="prediction-result">
+
+            <h2>
+
+                Prediction Result
+
+            </h2>
+
+            <div class="result-card">
+
+                <h3>
+
+                    Predicted {{ target }}
+
+                </h3>
+
+                <div class="prediction-value">
+
+                    {{ prediction }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+                </div>
+
+    </section>
+{% include 'components/footer.html' %}
+</body>
+
+</html>

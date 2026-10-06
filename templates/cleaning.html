@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Data Cleaning | DataInsight AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/cleaning.css') }}">
+
+    <link rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='images/logo.png') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+href="{{ url_for('static', filename='css/footer.css') }}">    
+
+</head>
+
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        DataInsight AI
+
+    </div>
+
+    <ul class="nav-links">
+
+        <li>
+
+            <a href="/dashboard">
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/upload">
+
+                Upload
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="active"
+               href="/cleaning">
+
+                Cleaning
+
+            </a>
+
+        </li>
+
+    </ul>
+
+    <div class="profile-menu">
+
+        <button class="profile-btn">
+
+            <div class="avatar">
+
+                {{ user_name[0]|upper }}
+
+            </div>
+
+            <div class="profile-text">
+
+                <span>
+
+                    {{ user_name }}
+
+                </span>
+
+                ▼
+
+            </div>
+
+        </button>
+
+        <div class="dropdown">
+
+            <a href="/profile">
+
+                My Profile
+
+            </a>
+
+            <a href="/upload-history">
+
+                Upload History
+
+            </a>
+
+            <a href="/reports">
+
+                Reports
+
+            </a>
+
+            <hr>
+
+            <a href="/logout"
+               class="logout">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- ===================== MAIN ===================== -->
+
+<div class="container">
+
+    <h1>
+
+        Data Cleaning
+
+    </h1>
+
+    <p class="subtitle">
+
+        Clean and prepare your dataset before visualization,
+        machine learning and AI storytelling.
+
+    </p>
+
+    <!-- ================= Dataset Information ================= -->
+
+    <div class="card">
+
+        <h2>
+
+            Dataset Information
+
+        </h2>
+
+        <div class="info-grid">
+
+            <div class="info-box">
+
+                <h3>
+
+                    {{ summary.rows }}
+
+                </h3>
+
+                <p>
+
+                    Total Rows
+
+                </p>
+
+            </div>
+
+            <div class="info-box">
+
+                <h3>
+
+                    {{ summary.columns }}
+
+                </h3>
+
+                <p>
+
+                    Total Columns
+
+                </p>
+
+            </div>
+
+            <div class="info-box">
+
+                <h3>
+
+                    {{ summary.missing }}
+
+                </h3>
+
+                <p>
+
+                    Missing Values
+
+                </p>
+
+            </div>
+
+            <div class="info-box">
+
+                <h3>
+
+                    {{ summary.duplicates }}
+
+                </h3>
+
+                <p>
+
+                    Duplicate Rows
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= Cleaning Form ================= -->
+
+    <form method="POST">
+
+        <div class="card">
+
+            <h2>
+
+                Cleaning Operations
+
+            </h2>
+                        <!-- ================= Missing Values ================= -->
+
+            <div class="section">
+
+                <h3>
+
+                    Missing Values
+
+                </h3>
+
+                <label>
+
+                    <input type="checkbox"
+                           name="remove_missing">
+
+                    Remove Missing Values
+
+                </label>
+
+                <label>
+
+                    <input type="checkbox"
+                           name="fill_mean">
+
+                    Fill Numeric Missing Values (Mean)
+
+                </label>
+
+                <label>
+
+                    <input type="checkbox"
+                           name="fill_median">
+
+                    Fill Numeric Missing Values (Median)
+
+                </label>
+
+                <label>
+
+                    <input type="checkbox"
+                           name="fill_mode">
+
+                    Fill Missing Values (Mode)
+
+                </label>
+
+            </div>
+
+
+            <!-- ================= Duplicate Rows ================= -->
+
+            <div class="section">
+
+                <h3>
+
+                    Duplicate Rows
+
+                </h3>
+
+                <label>
+
+                    <input type="checkbox"
+                           name="remove_duplicates">
+
+                    Remove Duplicate Rows
+
+                </label>
+
+            </div>
+
+
+            <!-- ================= Column Cleaning ================= -->
+
+            <div class="section">
+
+                <h3>
+
+                    Column Cleaning
+
+                </h3>
+
+                <label>
+
+                    <input type="checkbox"
+                           name="standardize_columns">
+
+                    Standardize Column Names
+
+                </label>
+
+                <label>
+
+                    <input type="checkbox"
+                           name="remove_empty_columns">
+
+                    Remove Empty Columns
+
+                </label>
+
+                <label>
+
+                    <input type="checkbox"
+                           name="remove_constant_columns">
+
+                    Remove Constant Columns
+
+                </label>
+
+            </div>
+
+
+            <!-- ================= Text Cleaning ================= -->
+
+            <div class="section">
+
+                <h3>
+
+                    Text Cleaning
+
+                </h3>
+
+                <label>
+
+                    <input type="checkbox"
+                           name="trim_spaces">
+
+                    Trim Leading & Trailing Spaces
+
+                </label>
+
+                <label>
+
+                    <input type="checkbox"
+                           name="remove_special">
+
+                    Remove Special Characters
+
+                </label>
+
+                <label>
+
+                    <input type="checkbox"
+                           name="standardize_text">
+
+                    Convert Text to Title Case
+
+                </label>
+
+            </div>
+
+
+            <!-- ================= Datatype ================= -->
+
+            <div class="section">
+
+                <h3>
+
+                    Datatype Conversion
+
+                </h3>
+
+                <label>
+
+                    <input type="checkbox"
+                           name="convert_types">
+
+                    Automatically Convert Datatypes
+
+                </label>
+
+            </div>
+
+
+            <!-- ================= Outliers ================= -->
+
+            <div class="section">
+
+                <h3>
+
+                    Outlier Detection
+
+                </h3>
+
+                <label>
+
+                    <input type="checkbox"
+                           name="remove_outliers">
+
+                    Detect & Remove Outliers (IQR Method)
+
+                </label>
+
+            </div>
+
+
+            <button
+                    type="submit"
+                    class="clean-btn">
+
+                Clean Dataset
+
+            </button>
+
+        </div>
+
+    </form>
+
+
+    <!-- ================= AI Recommendations ================= -->
+
+    <div class="card">
+
+        <h2>
+
+            AI Recommendations
+
+        </h2>
+
+        <p class="subtitle">
+
+            Based on your dataset, DataInsight AI recommends the following cleaning operations.
+
+        </p>
+
+        <div class="recommendation-box">
+
+            <ul>
+
+                <li>
+
+                    Fill missing numeric values using <b>Median</b>.
+
+                </li>
+
+                <li>
+
+                    Remove duplicate records before analysis.
+
+                </li>
+
+                <li>
+
+                    Standardize column names.
+
+                </li>
+
+                <li>
+
+                    Trim unnecessary spaces in text columns.
+
+                </li>
+
+                <li>
+
+                    Convert object columns into appropriate datatypes.
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+        <!-- ================= Cleaning Report ================= -->
+
+    {% if report %}
+
+    <div class="card success">
+
+        <h2>
+
+            Cleaning Completed Successfully
+
+        </h2>
+
+        <p class="subtitle">
+
+            Your dataset has been cleaned successfully and is now ready for analysis.
+
+        </p>
+
+        <div class="report-grid">
+
+            <div>
+
+                <h4>
+
+                    Rows Removed
+
+                </h4>
+
+                <p>
+
+                    {{ report.rows_removed }}
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <h4>
+
+                    Missing Values Fixed
+
+                </h4>
+
+                <p>
+
+                    {{ report.missing_fixed }}
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <h4>
+
+                    Duplicate Rows Removed
+
+                </h4>
+
+                <p>
+
+                    {{ report.duplicates_removed }}
+
+                </p>
+
+            </div>
+
+            <div>
+
+                <h4>
+
+                    Processing Time
+
+                </h4>
+
+                <p>
+
+                    {{ report.processing_time }} sec
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="buttons">
+
+            <a
+
+                href="/download_cleaned/{{ report.cleaned_filename }}"
+
+                class="download-btn">
+
+                ⬇ Download Cleaned Dataset
+
+            </a>
+
+            <a
+
+                href="/eda"
+
+                class="next-btn">
+
+                Continue to EDA →
+
+            </a>
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+{% include 'components/footer.html' %}
+</body>
+
+</html>

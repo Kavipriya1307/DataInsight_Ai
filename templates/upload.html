@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload Dataset | DataInsight AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}">
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/footer.css') }}">
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+</head>
+
+<body>
+
+{% include 'components/navbar.html' %}
+    <!-- ===================== MAIN ===================== -->
+
+<div class="container">
+
+<h1>Upload Your Dataset</h1>
+
+<p class="subtitle">
+Upload a CSV or Excel dataset to begin AI-powered data analysis.
+</p>
+
+<div class="card">
+
+<form action="/upload" method="POST" enctype="multipart/form-data">
+
+<label for="fileInput" class="upload-box" id="drop-area">
+
+<input
+type="file"
+id="fileInput"
+name="file"
+accept=".csv,.xlsx,.xls"
+hidden
+required>
+
+<div class="upload-icon">
+☁
+</div>
+
+<h3>Drag & Drop your dataset here</h3>
+
+<p>or Click here to select a file</p>
+
+<span>
+Supported Files :
+<strong>CSV • XLS • XLSX</strong>
+</span>
+
+<div class="selected-file" id="file-name">
+No file selected
+</div>
+
+</label>
+
+<button class="upload-btn" type="submit">
+Upload Dataset
+</button>
+
+</form>
+
+</div>
+{% if message %}
+
+<div class="message-card">
+{{ message }}
+</div>
+
+{% endif %}
+
+{% if summary %}
+
+<div class="summary-card">
+
+<h2>Dataset Uploaded Successfully!</h2>
+
+<div class="summary-grid">
+
+<div>
+<h4>Filename</h4>
+<p>{{ summary.original_name }}</p>
+</div>
+
+<div>
+<h4>Rows</h4>
+<p>{{ summary.rows }}</p>
+</div>
+
+<div>
+<h4>Columns</h4>
+<p>{{ summary.columns }}</p>
+</div>
+
+<div>
+<h4>Missing Values</h4>
+<p>{{ summary.missing }}</p>
+</div>
+
+<div>
+<h4>Duplicate Rows</h4>
+<p>{{ summary.duplicates }}</p>
+</div>
+
+</div>
+
+<h3 class="preview-title">
+Dataset Preview
+</h3>
+
+<div class="table-container">
+
+{{ summary.preview|safe }}
+
+</div>
+
+<div class="buttons">
+
+<a href="/cleaning" class="next-btn">
+
+Continue to Data Cleaning →
+
+</a>
+
+</div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+<script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+<script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+{% include 'components/footer.html' %}
+</body>
+
+</html>
+
+

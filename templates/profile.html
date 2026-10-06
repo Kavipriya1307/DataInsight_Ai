@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | DataInsight AI</title>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+
+
+    <!-- Orbitron -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
+
+
+    <!-- Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+
+{% include 'components/navbar.html' %}
+
+
+
+<!-- ================= MAIN ================= -->
+
+
+<main class="profile-container">
+
+
+
+<section class="profile-card">
+
+
+
+    <!-- PROFILE HEADER -->
+
+
+    <div class="profile-header">
+
+
+        <div class="avatar">
+
+
+            {{ user_name[0]|upper }}
+
+
+        </div>
+
+
+
+        <div>
+
+
+            <h2>
+
+                {{ user_name }}
+
+            </h2>
+
+
+            <p>
+
+                {{ email }}
+
+            </p>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+    <!-- ACCOUNT INFORMATION -->
+
+
+    <section class="profile-details">
+
+
+
+        <div class="info-card">
+
+
+            <i class="fa-solid fa-user"></i>
+
+
+            <div>
+
+
+                <label>Full Name</label>
+
+
+                <h3>
+
+                    {{ user_name }}
+
+                </h3>
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="info-card">
+
+
+            <i class="fa-solid fa-envelope"></i>
+
+
+            <div>
+
+
+                <label>Email Address</label>
+
+
+                <h3>
+
+                    {{ email }}
+
+                </h3>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="info-card">
+
+
+            <i class="fa-solid fa-database"></i>
+
+
+            <div>
+
+
+                <label>Datasets Uploaded</label>
+
+
+                <h3>
+
+                    {{ dataset_count }}
+
+                </h3>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="info-card">
+
+
+            <i class="fa-solid fa-file-pdf"></i>
+
+
+            <div>
+
+
+                <label>Reports Generated</label>
+
+
+                <h3>
+
+                    {{ report_count }}
+
+                </h3>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="info-card">
+
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+
+            <div>
+
+
+                <label>Member Since</label>
+
+
+                <h3>
+
+                    {{ joined_date }}
+
+                </h3>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <div class="info-card">
+
+
+            <i class="fa-solid fa-circle-check"></i>
+
+
+            <div>
+
+
+                <label>Account Status</label>
+
+
+                <h3>
+
+                    Active
+
+                </h3>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+    </section>
+
+
+
+</section>
+
+
+
+</main>
+
+
+
+
+
+<!-- ================= DROPDOWN SCRIPT ================= 
+
+
+<script>
+
+
+const profileBtn = document.querySelector(".profile-btn");
+
+const dropdown = document.querySelector(".dropdown");
+
+
+profileBtn.addEventListener("click", function(e){
+
+
+    e.stopPropagation();
+
+
+    dropdown.classList.toggle("show");
+
+
+});
+
+
+
+document.addEventListener("click", function(){
+
+
+    dropdown.classList.remove("show");
+
+
+});
+
+
+
+</script> -->
+
+<script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+
+{% include 'components/footer.html' %}
+
+
+
+</body>
+
+</html>

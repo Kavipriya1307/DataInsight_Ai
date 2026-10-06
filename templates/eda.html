@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exploratory Data Analysis | DataInsight AI</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/eda.css') }}">
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/footer.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo">
+DataInsight AI
+</div>
+
+<ul class="nav-links">
+<li><a href="/dashboard">Dashboard</a></li>
+<li><a href="/upload">Upload</a></li>
+<li><a href="/cleaning">Cleaning</a></li>
+<li><a class="active" href="/eda">EDA</a></li>
+</ul>
+
+<div class="profile-menu">
+
+<button class="profile-btn" type="button">
+
+<div class="avatar">
+{{ user_name[0]|upper }}
+</div>
+
+<div class="profile-text">
+<span>{{ user_name }}</span>
+▼
+</div>
+
+</button>
+
+<div class="dropdown">
+<a href="/profile">My Profile</a>
+<a href="/upload-history">Upload History</a>
+<a href="/reports">Reports</a>
+<hr>
+<a href="/logout" class="logout">Logout</a>
+</div>
+
+</div>
+
+</nav>
+
+<div class="container">
+
+<h1>Exploratory Data Analysis</h1>
+
+<p class="subtitle">
+Understand your dataset with statistical analysis and AI-generated insights.
+</p>
+
+<div class="card">
+
+<h2>Dataset Overview</h2>
+
+<div class="info-grid">
+
+<div class="info-box">
+<h3>{{ info.rows }}</h3>
+<p>Total Rows</p>
+</div>
+
+<div class="info-box">
+<h3>{{ info.columns }}</h3>
+<p>Total Columns</p>
+</div>
+
+<div class="info-box">
+<h3>{{ info.numeric }}</h3>
+<p>Numeric Columns</p>
+</div>
+
+<div class="info-box">
+<h3>{{ info.categorical }}</h3>
+<p>Categorical Columns</p>
+</div>
+
+<div class="info-box">
+<h3>{{ info.memory }} MB</h3>
+<p>Memory Usage</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Statistical Summary</h2>
+
+<div class="table-container">
+
+{{ stats_table|safe }}
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Missing Value Report</h2>
+
+<div class="table-container">
+
+{{ missing_table|safe }}
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>AI Insights</h2>
+
+<div class="insight-container">
+
+{% for insight in insights %}
+
+<div class="insight-card">
+
+{{ insight }}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Correlation Heatmap</h2>
+
+{% if heatmap %}
+
+<img class="heatmap-img" src="{{ url_for('static', filename='images/' + heatmap) }}">
+
+{% else %}
+
+<p>This dataset does not contain enough numeric columns to generate a correlation heatmap.</p>
+
+{% endif %}
+
+</div>
+
+<div class="card">
+
+<h2>Distribution Analysis</h2>
+
+<div class="histogram-grid">
+
+{% for graph in histograms %}
+
+<div class="graph-card">
+
+<h3>{{ graph.column }}</h3>
+
+<img src="{{ url_for('static',filename='images/'+graph.image) }}">
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+<div class="buttons">
+
+<a href="{{ url_for('visualization') }}" class="next-btn">
+
+Continue to Visualization →
+
+</a>
+
+</div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/eda.js') }}"></script>
+{% include 'components/footer.html' %}
+</body>
+
+</html>

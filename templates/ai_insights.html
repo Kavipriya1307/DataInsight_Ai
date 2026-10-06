@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Storytelling | DataInsight AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static',filename='css/ai_insights.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <link rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='images/logo.png') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/footer.css') }}">
+
+    <link rel="stylesheet"
+href="{{ url_for('static', filename='css/navbar.css') }}">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+{% include 'components/navbar.html' %}
+<!-- ================= PAGE ================= -->
+
+<div class="container">
+
+    <h1>
+
+        AI Data Storytelling
+
+    </h1>
+
+    <p class="subtitle">
+
+        Transform raw data into meaningful business insights using Artificial Intelligence.
+
+    </p>
+
+    <!-- Executive Story -->
+
+    <div class="card">
+
+        <h2>
+
+            
+            AI Executive Summary
+
+        </h2>
+
+        <div class="story-box">
+                {{story|safe}}
+        </div>
+
+        <!-- ================= DATASET SUMMARY ================= -->
+
+    <div class="card">
+
+        <h2>
+
+            
+            Dataset Summary
+
+        </h2>
+
+        <div class="summary-grid">
+
+            {% for key, value in summary.items() %}
+
+            <div class="summary-item">
+
+                <h3>{{ key }}</h3>
+
+                <p>{{ value }}</p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= ML RESULT ================= -->
+
+    {% if ml_result %}
+
+    <div class="card">
+
+        <h2>
+
+            Machine Learning Summary
+
+        </h2>
+
+        <div class="ml-grid">
+
+            {% for key,value in ml_result.items() %}
+
+                {% if key not in ["chart","predictions","actual","feature_importance","model_path","metadata_path"] %}
+
+                <div class="ml-item">
+
+                    <h4>{{ key.replace("_"," ").title() }}</h4>
+
+                    <p>{{ value }}</p>
+
+                </div>
+
+                {% endif %}
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+    <!-- ================= DATASET CHAT ================= -->
+
+    <div class="card">
+
+        <h2>
+
+            <i class="fa-solid fa-comments"></i>
+
+            Ask Your Dataset
+
+        </h2>
+
+        <p class="chat-info">
+
+            Ask questions about your uploaded dataset using AI.
+
+        </p>
+
+        <form id="chatForm">
+
+            <input
+
+                type="text"
+
+                id="question"
+
+                placeholder="Example: Which feature has the highest impact?"
+
+                required>
+
+            <button type="submit">
+
+                Ask AI
+
+            </button>
+
+        </form>
+
+        <div id="chatResponse"></div>
+
+    </div>
+
+        <!-- ================= BUTTONS ================= -->
+
+    <div class="button-group">
+
+        <a href="/ml" class="secondary-btn">
+
+            ← Back to ML
+
+        </a>
+
+        <a href="/report" class="continue-btn">
+
+            Continue to Report →
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ================= CHAT SCRIPT ================= -->
+
+<script>
+
+document.getElementById("chatForm").addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    const question=document.getElementById("question").value;
+
+    const responseBox=document.getElementById("chatResponse");
+
+    responseBox.innerHTML="<p><b>Thinking...</b></p>";
+
+    const response=await fetch("/dataset_chat",{
+
+        method:"POST",
+
+        headers:{
+
+            "Content-Type":"application/x-www-form-urlencoded"
+
+        },
+
+        body:new URLSearchParams({
+
+            question:question
+
+        })
+
+    });
+
+    const data=await response.json();
+
+    responseBox.innerHTML=`
+
+        <div class="chat-answer">
+
+            <h3>
+
+                <i class="fa-solid fa-robot"></i>
+
+                AI Answer
+
+            </h3>
+
+            <p>${data.answer}</p>
+
+        </div>
+
+    `;
+
+});
+
+</script>
+<script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+{% include 'components/footer.html' %}
+</body>
+
+</html>
