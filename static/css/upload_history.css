@@ -1,0 +1,288 @@
+/* ==========================================
+   GLOBAL
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+    background:#f5f8fc;
+    color:#1f2937;
+
+}
+
+
+/* ==========================================
+   MAIN CONTAINER
+========================================== */
+
+.history-container{
+
+    width:92%;
+    max-width:1300px;
+
+    margin:110px auto 40px;
+
+}
+
+
+/* ==========================================
+   PAGE TITLE
+========================================== */
+
+.page-title{
+
+    margin-bottom:30px;
+
+}
+
+.page-title h1{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#2563eb;
+
+    margin-bottom:8px;
+
+}
+
+.page-title h1 i{
+
+    margin-right:10px;
+
+}
+
+.page-title p{
+
+    color:#64748b;
+
+    font-size:16px;
+
+}
+
+
+/* ==========================================
+   CARD
+========================================== */
+
+.history-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.06);
+
+    overflow:hidden;
+
+    padding:25px;
+
+}
+
+/* ==========================================
+   TABLE
+========================================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:10px;
+
+}
+
+thead{
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+}
+
+thead th{
+
+    padding:18px;
+
+    text-align:left;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    letter-spacing:.3px;
+
+}
+
+tbody tr{
+
+    border-bottom:1px solid #edf2f7;
+
+    transition:.25s;
+
+}
+
+tbody tr:hover{
+
+    background:#f8fbff;
+
+}
+
+tbody td{
+
+    padding:18px;
+
+    font-size:15px;
+
+    color:#374151;
+
+}
+
+tbody tr:last-child{
+
+    border-bottom:none;
+
+}
+
+
+/* ==========================================
+   DATASET NAME
+========================================== */
+
+tbody td:nth-child(2){
+
+    font-weight:600;
+
+    color:#2563eb;
+
+}
+
+
+/* ==========================================
+   ROW NUMBER
+========================================== */
+
+tbody td:first-child{
+
+    width:70px;
+
+    font-weight:600;
+
+    color:#6b7280;
+
+}
+
+
+/* ==========================================
+   EMPTY STATE
+========================================== */
+
+tbody tr td[colspan]{
+
+    text-align:center;
+
+    padding:45px;
+
+    color:#94a3b8;
+
+    font-size:17px;
+
+    font-weight:500;
+
+}
+
+
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:900px){
+
+.history-container{
+
+    width:96%;
+
+}
+
+.history-card{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    min-width:750px;
+
+}
+
+
+}
+
+
+@media(max-width:600px){
+
+.page-title h1{
+
+    font-size:28px;
+
+}
+
+.page-title p{
+
+    font-size:14px;
+
+}
+
+thead th,
+tbody td{
+
+    padding:14px;
+
+    font-size:14px;
+
+}
+}
+
+
+
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+.history-card{
+
+    animation:fadeUp .6s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}

@@ -1,0 +1,747 @@
+/* =====================================================
+   DASHBOARD - DATAINSIGHT AI
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+    background:#f4f8fd;
+    color:#1f2937;
+}
+
+/* NAVBAR */
+
+
+/* ===========================================
+   MAIN CONTAINER
+=========================================== */
+
+.dashboard-container{
+
+    width:92%;
+    max-width:1450px;
+    margin:110px auto 50px;
+}
+
+
+/* ===========================================
+   HERO SECTION
+=========================================== */
+
+.hero-card{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    background:#ffffff;
+
+    border-radius:20px;
+
+    padding:40px 50px;
+
+    margin-bottom:35px;
+
+    box-shadow:
+    0 8px 25px rgba(0,0,0,.06);
+
+    overflow:hidden;
+}
+
+.hero-left{
+
+    width:60%;
+}
+
+.hero-left h1{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    margin-bottom:18px;
+
+    line-height:1.3;
+}
+
+.hero-left span{
+
+    color:#2563eb;
+}
+
+.hero-left p{
+
+    font-size:16px;
+
+    color:#6b7280;
+
+    line-height:1.8;
+
+    max-width:650px;
+}
+
+.hero-right{
+
+    width:35%;
+
+    display:flex;
+
+    justify-content:flex-end;
+}
+
+.hero-right img{
+
+    width:320px;
+
+    max-width:100%;
+
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+
+/* ===========================================
+   STATISTICS SECTION
+=========================================== */
+
+.stats-section{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+    margin-bottom:35px;
+}
+
+.stat-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:28px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:22px;
+
+    box-shadow:
+
+    0 8px 20px rgba(0,0,0,.05);
+
+    transition:.3s;
+}
+
+.stat-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+
+    0 15px 35px rgba(37,99,235,.12);
+}
+
+.stat-icon{
+
+    width:72px;
+
+    height:72px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+    color:white;
+}
+
+.stat-icon.blue{
+
+    background:#2563eb;
+}
+
+.stat-icon.green{
+
+    background:#10b981;
+}
+
+.stat-content h2{
+
+    font-size:34px;
+
+    color:#111827;
+
+    margin-bottom:6px;
+
+    font-weight:700;
+}
+
+.stat-content p{
+
+    color:#6b7280;
+
+    font-size:15px;
+
+    font-weight:500;
+}
+
+/* ===========================================
+   DASHBOARD GRID
+=========================================== */
+
+.dashboard-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:28px;
+
+    margin-bottom:40px;
+}
+
+
+/* ===========================================
+   DASHBOARD CARDS
+=========================================== */
+
+.dashboard-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 22px rgba(0,0,0,.05);
+
+    overflow:hidden;
+
+    transition:.3s;
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 35px rgba(37,99,235,.10);
+}
+
+
+/* ===========================================
+   CARD HEADER
+=========================================== */
+
+.card-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:20px 24px;
+
+    border-bottom:1px solid #edf2f7;
+
+    background:#ffffff;
+}
+
+.card-header h3{
+
+    font-size:18px;
+
+    color:#1e293b;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-weight:600;
+}
+
+.card-header h3 i{
+
+    color:#2563eb;
+
+    font-size:18px;
+}
+
+
+/* ===========================================
+   CARD BODY
+=========================================== */
+
+.card-body{
+
+    padding:12px 18px 20px;
+}
+
+
+/* ===========================================
+   RECENT ITEMS
+=========================================== */
+
+.recent-item{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+    padding:16px;
+
+    border-radius:12px;
+
+    transition:.25s;
+
+    margin-bottom:12px;
+}
+
+.recent-item:hover{
+
+    background:#f8fbff;
+}
+
+
+/* ===========================================
+   ICON
+=========================================== */
+
+.recent-icon{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#e8f1ff;
+
+    color:#2563eb;
+
+    font-size:20px;
+
+    flex-shrink:0;
+}
+
+.recent-icon.pdf{
+
+    background:#eefbf4;
+
+    color:#16a34a;
+}
+
+
+/* ===========================================
+   DETAILS
+=========================================== */
+
+.recent-details{
+
+    flex:1;
+}
+
+.recent-details h4{
+
+    font-size:15px;
+
+    color:#1f2937;
+
+    margin-bottom:6px;
+
+    font-weight:600;
+
+    word-break:break-word;
+}
+
+.recent-details p{
+
+    color:#6b7280;
+
+    font-size:13px;
+
+    margin-bottom:5px;
+}
+
+.recent-details span{
+
+    color:#94a3b8;
+
+    font-size:12px;
+}
+
+
+/* ===========================================
+   DOWNLOAD LINK
+=========================================== */
+
+.recent-details a{
+
+    display:inline-block;
+
+    margin-top:8px;
+
+    color:#2563eb;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    text-decoration:none;
+}
+
+.recent-details a:hover{
+
+    text-decoration:underline;
+}
+
+
+/* ===========================================
+   EMPTY CARD
+=========================================== */
+
+.empty-card{
+
+    text-align:center;
+
+    padding:55px 20px;
+
+    color:#94a3b8;
+}
+
+.empty-card i{
+
+    font-size:46px;
+
+    color:#cbd5e1;
+
+    margin-bottom:15px;
+}
+
+.empty-card p{
+
+    font-size:15px;
+
+    color:#64748b;
+}
+
+
+/* ===========================================
+   PROFILE DROPDOWN
+=========================================== 
+
+.profile-menu{
+
+    position:relative;
+}
+
+.profile-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    background:none;
+
+    border:none;
+}
+
+.profile-circle{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:600;
+
+    font-size:17px;
+}
+
+.profile-btn span{
+
+    font-size:15px;
+
+    font-weight:500;
+
+    color:#1f2937;
+}
+
+.dropdown{
+
+    position:absolute;
+
+    right:0;
+
+    top:65px;
+
+    width:240px;
+
+    background:white;
+
+    border-radius:14px;
+
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
+
+    display:none;
+
+    overflow:hidden;
+
+    z-index:999;
+}
+
+.dropdown.show{
+
+    display:block;
+}
+
+.dropdown a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 18px;
+
+    color:#374151;
+
+    text-decoration:none;
+
+    transition:.25s;
+
+    font-size:15px;
+}
+
+.dropdown a:hover{
+
+    background:#f5f9ff;
+
+    color:#2563eb;
+}
+
+.dropdown hr{
+
+    border:none;
+
+    border-top:1px solid #ececec;
+}
+
+.logout{
+
+    color:#ef4444 !important;
+}
+
+.hero-actions{
+    margin-top:28px;
+}*/
+
+.upload-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:20px;
+    background:#2f64f5;
+    color:#fff;
+    padding:20px 30px;
+    border-radius:16px;
+    text-decoration:none;
+    font-size:20px;
+    font-weight:600;
+    transition:.3s ease;
+    box-shadow:0 8px 25px rgba(47,100,245,.25);
+}
+
+.upload-btn:hover{
+    background:#1d4ed8;
+    transform:translateY(-3px);
+}
+
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media(max-width:1100px){
+
+.hero-card{
+
+    flex-direction:column;
+
+    text-align:center;
+
+    padding:35px;
+}
+
+.hero-left{
+
+    width:100%;
+}
+
+.hero-right{
+
+    width:100%;
+
+    justify-content:center;
+
+    margin-top:25px;
+}
+
+.hero-right img{
+
+    width:260px;
+}
+
+.dashboard-grid{
+
+    grid-template-columns:1fr;
+}
+
+.stats-section{
+
+    grid-template-columns:1fr;
+}
+
+}
+
+
+@media(max-width:768px){
+
+.dashboard-container{
+
+    width:95%;
+}
+
+.hero-left h1{
+
+    font-size:28px;
+}
+
+.hero-left p{
+
+    font-size:15px;
+}
+
+.stat-card{
+
+    padding:22px;
+}
+
+.stat-content h2{
+
+    font-size:28px;
+}
+
+.footer-container{
+
+    flex-direction:column;
+
+    text-align:center;
+}
+
+.profile-btn span{
+
+    display:none;
+}
+
+}
+
+
+@media(max-width:480px){
+
+.hero-card{
+
+    padding:25px;
+}
+
+.hero-left h1{
+
+    font-size:24px;
+}
+
+.hero-right img{
+
+    width:200px;
+}
+
+.card-header h3{
+
+    font-size:16px;
+}
+
+.recent-details h4{
+
+    font-size:14px;
+}
+
+.recent-details p{
+
+    font-size:12px;
+}
+
+.recent-details span{
+
+    font-size:11px;
+}
+
+.footer-left h2{
+
+    font-size:20px;
+}
+
+}

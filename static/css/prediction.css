@@ -1,0 +1,429 @@
+/* ===========================
+   RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#eef5ff;
+    color:#222;
+}
+
+/* ===========================
+   NAVBAR
+=========================== */
+
+nav{
+
+    width:100%;
+    height:80px;
+
+    background:white;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 70px;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+
+    position:sticky;
+    top:0;
+    z-index:999;
+
+}
+
+.logo{
+
+    font-family:'Orbitron',sans-serif;
+    font-size:30px;
+    font-weight:bold;
+    color:#2f63e8;
+
+}
+
+.nav-links{
+
+    display:flex;
+    align-items:center;
+    gap:35px;
+
+}
+
+.nav-links a{
+
+    text-decoration:none;
+    color:#222;
+    font-size:16px;
+    font-weight:600;
+    transition:.3s;
+
+}
+
+.nav-links a:hover{
+
+    color:#2f63e8;
+
+}
+
+.active{
+
+    color:#2f63e8 !important;
+
+}
+
+/* ===========================
+   PROFILE
+=========================== */
+
+.profile{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+white-space:nowrap;
+
+}
+
+.avatar{
+
+    width:50px;
+    height:50px;
+
+    border-radius:50%;
+
+    background:#2f63e8;
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:22px;
+    font-weight:700;
+
+}
+
+.profile-info{
+
+display:flex;
+
+flex-direction:row;
+
+align-items:center;
+
+gap:10px;
+
+white-space:nowrap;
+
+}
+
+.username{
+
+    font-size:15px;
+    font-weight:600;
+
+}
+
+.dropdown{
+
+font-size:14px;
+
+cursor:pointer;
+
+}
+
+/* ===========================
+   PAGE
+=========================== */
+
+.upload-section{
+
+    width:100%;
+    display:flex;
+    justify-content:center;
+    padding:45px;
+
+}
+
+.upload-card{
+
+    width:1005%;
+    max-width:900px;
+
+    background:white;
+
+    border-radius:18px;
+    margin: auto;
+    padding:40px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.10);
+
+}
+
+.upload-card h1{
+
+    text-align:center;
+    font-family:'Orbitron',sans-serif;
+    font-size:42px;
+    margin-bottom:10px;
+
+}
+
+.upload-card p{
+
+    text-align:center;
+    color:#666;
+    font-size:18px;
+    margin-bottom:35px;
+
+}
+
+/* ===========================
+   FORM GRID
+=========================== */
+
+.prediction-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:25px;
+
+    margin-top:20px;
+
+}
+
+.input-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.input-group label{
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:#374151;
+
+    margin-bottom:8px;
+
+}
+
+.input-group input{
+
+    padding:14px 16px;
+
+    border:2px solid #dbeafe;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:.3s;
+
+}
+
+.input-group input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.10);
+
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.predict-btn{
+
+    display:block;
+
+    margin:35px auto 0;
+
+    border:none;
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:16px 45px;
+
+    border-radius:12px;
+
+    font-size:20px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.predict-btn:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+/* ===========================
+   RESULT SECTION
+=========================== */
+
+.prediction-result{
+
+    margin-top:50px;
+
+    text-align:center;
+
+}
+
+.prediction-result h2{
+
+    font-family:'Orbitron',sans-serif;
+
+    color:#2563eb;
+
+    margin-bottom:25px;
+
+}
+
+.result-card{
+
+    max-width:500px;
+
+    margin:auto;
+
+    background:#f8fbff;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    border:2px solid #dbeafe;
+
+    box-shadow:0 10px 30px rgba(37,99,235,.10);
+
+}
+
+.result-card h3{
+
+    color:#64748b;
+
+    margin-bottom:15px;
+
+    font-size:20px;
+
+}
+
+.prediction-value{
+
+    font-size:38px;
+
+    font-weight:700;
+
+    color:#2563eb;
+
+    word-break:break-word;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:900px){
+
+    .prediction-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    nav{
+
+        padding:0 20px;
+
+    }
+
+    .nav-links{
+
+        display:none;
+
+    }
+
+    .upload-card{
+
+        padding:25px;
+
+    }
+
+    .upload-card h1{
+
+        font-size:30px;
+
+    }
+
+    .prediction-value{
+
+        font-size:28px;
+
+    }
+
+}
+
+.button-row{
+
+display:flex;
+
+justify-content:flex-start;
+
+margin-bottom:25px;
+
+}
+
+.back-btn{
+
+background:#6b7280;
+
+color:white;
+
+padding:12px 24px;
+
+border-radius:10px;
+
+text-decoration:none;
+
+font-weight:600;
+
+}
+
+.back-btn:hover{
+
+background:#4b5563;
+
+}
